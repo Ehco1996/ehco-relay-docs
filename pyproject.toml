@@ -1,0 +1,21 @@
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.poetry]
+authors = ["Ehco1996 <zh19960202@gmail.com>"]
+description = "docs for ehco relay"
+name = "ehco-relay-docs"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+mkdocs-material = "^9.5.15"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

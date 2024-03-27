@@ -1,0 +1,16 @@
+/* 减少 logo 和标题文字之间的距离 */
+.md-header__button.md-logo {
+    margin-right: 10px; /* 减少右边距，根据需要调整 */
+}
+
+/* 可选：增加 logo 大小 */
+.md-header__button.md-logo img {
+    height: auto; /* 保持原始宽高比 */
+    width: 70px; /* 根据需要调整宽度 */
+    height: 70px; /* 保持原始高度 */
+}
+
+/* 可选：调整标题文字的左边距 */
+.md-header__title {
+    margin-left: 10px; /* 根据需要增加左边距 */
+}
