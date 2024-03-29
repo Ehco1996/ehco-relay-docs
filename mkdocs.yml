@@ -22,7 +22,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.footer
+    # - navigation.footer
     - navigation.top
     - content.code.copy
     - content.code.annotate
