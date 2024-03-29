@@ -34,7 +34,7 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Ehco1996/Ehco
+      link: https://github.com/Ehco1996/ehco
     - icon: fontawesome/brands/twitter
       link: https://x.com/Ehco1996
 
@@ -48,8 +48,8 @@ nav:
           - 直接转发: rule/direct.md
           - 隧道转发: rule/tunnel.md
       - 添加节点:
-          - 安装: node/install.md
-          - 托管: node/manage.md
+          - 配置: node/manage.md
+          - 部署: node/install.md
       - 使用场景:
           - 内网穿透: usage/intranet.md
       - FAQ: faq.md
