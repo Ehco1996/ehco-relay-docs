@@ -64,7 +64,7 @@ services:
         container_name: ehco
         restart: always
         network_mode: "host"
-        command: ["ehco", "-c", "config.json"]
+        command: ["-c", "config.json"]
 ```
 
 ## 配置文件
