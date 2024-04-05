@@ -19,6 +19,6 @@
 -   内嵌的 Metrics，可以查看当前节点的性能指标。ehco 还内嵌了 node_exporter，可以查看节点的系统指标。
 -   更多功能正在开发中，敬请期待。
 
-<!-- ## 联系我们
+## 联系我们
 
--   如果您在使用过程中遇到问题，可以通过 Telegram 群组联系我们：[Ehco-Relay](https://t.me/ehcorelay)。 -->
+-   如果您在使用过程中遇到问题，可以通过 Telegram 联系我：[Ehco](https://t.me/Ehco1996)。
