@@ -22,7 +22,6 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    # - navigation.footer
     - navigation.top
     - content.code.copy
     - content.code.annotate
@@ -52,8 +51,14 @@ nav:
       - 添加节点:
           - 配置: node/manage.md
           - 部署: node/install.md
+          - 配置项说明: node/config.md
       - 使用场景:
+          - 流量转发: usage/relay.md
           - 内网穿透: usage/intranet.md
+          - 代理集转发: usage/proxy.md
+          - 性能监控: usage/monitor.md
+          - Xray: usage/xray.md
+      - 性能: benchmark.md
       - FAQ: faq.md
 
   - 中转服务: https://ehco-relay.cc
