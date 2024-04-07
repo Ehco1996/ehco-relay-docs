@@ -1,56 +1,64 @@
-## Benchmark on Apple m1 by iperf3
+## Apple M1 上的 ehco 性能基准测试
+
+本次基准测试使用 iperf3 工具在 Apple M1 芯片上评估了 ehco 在不同转发模式下的性能。测试包括直接转发和通过不同类型的隧道（ws、wss、mwss）转发。以下是具体的测试命令和结果。
+
+### 测试命令
+
+首先，启动 iperf3 作为服务器监听在端口 5201：
 
 ```sh
-# run iperf server on 5201
 iperf3 -s
-
-# 直接转发
-# run relay server listen 1234 to 9001 (raw)
-go run cmd/ehco/main.go -l 0.0.0.0:1234 -r 0.0.0.0:5201
-
-# 直接转发END
-
-# 通过ws隧道转发
-# listen 1235 relay over ws to 1236
-go run cmd/ehco/main.go -l 0.0.0.0:1235  -r ws://0.0.0.0:1236 -tt ws
-
-# listen 1236 through ws relay to 5201
-go run cmd/ehco/main.go -l 0.0.0.0:1236 -lt ws -r 0.0.0.0:5201
-# 通过ws隧道转发END
-
-# 通过wss隧道转发
-# listen 1234 relay over wss to 1236
-go run cmd/ehco/main.go -l 0.0.0.0:1235  -r wss://0.0.0.0:1236 -tt wss
-
-# listen 1236 through wss relay to 5201
-go run cmd/ehco/main.go -l 0.0.0.0:1236 -lt wss -r 0.0.0.0:5201
-# 通过wss隧道转发END
-
-# 通过mwss隧道转发 和wss相比 速度会慢，但是能减少延迟
-# listen 1237 relay over mwss to 1238
-go run cmd/ehco/main.go -l 0.0.0.0:1237  -r wss://0.0.0.0:1238 -tt mwss
-
-# listen 1238 through mwss relay to 5201
-go run cmd/ehco/main.go -l 0.0.0.0:1238 -lt mwss -r 0.0.0.0:5201
-# 通过mwss隧道转发END
-
-# run through file
-go run cmd/ehco/main.go -c config.json
-
-# benchmark tcp
-iperf3 -c 0.0.0.0 -p 1234
-
-# benchmark tcp through wss
-iperf3 -c 0.0.0.0 -p 1235
-
-# benchmark upd
-iperf3 -c 0.0.0.0 -p 1234 -u -b 1G --length 1024
 ```
 
-```
-| iperf | raw            | relay(raw)    | relay(ws)    | relay(wss)   | relay(mwss)    | relay(mtcp)    |
-| ----- | -------------- | ------------- | ------------ | ------------ | -------------- | -------------- |
-| tcp   | 123 Gbits/sec  | 55 Gbits/sec  | 41 Gbits/sec | 10 Gbits/sec | 5.78 Gbits/sec | 22.2 Gbits/sec |
-| udp   | 14.5 Gbits/sec | 3.3 Gbits/sec | 直接转发     | 直接转发     | 直接转发       | 直接转发       |
+接下来，通过不同的命令启动 ehco 以测试各种转发模式的性能。
 
+#### 直接转发
+
+```sh
+ehco -l 0.0.0.0:1234 -r 0.0.0.0:5201
 ```
+
+#### 通过 ws 隧道转发
+
+```sh
+ehco -l 0.0.0.0:1235 -r ws://0.0.0.0:1236 -tt ws
+ehco -l 0.0.0.0:1236 -lt ws -r 0.0.0.0:5201
+```
+
+#### 通过 wss 隧道转发
+
+```sh
+ehco -l 0.0.0.0:1235 -r wss://0.0.0.0:1236 -tt wss
+ehco -l 0.0.0.0:1236 -lt wss -r 0.0.0.0:5201
+```
+
+#### 通过 mwss 隧道转发
+
+```sh
+ehco -l 0.0.0.0:1237 -r wss://0.0.0.0:1238 -tt mwss
+ehco -l 0.0.0.0:1238 -lt mwss -r 0.0.0.0:5201
+```
+
+#### 通过 mtcp 隧道转发
+
+```sh
+ehco -l 0.0.0.0:1237 -r wss://0.0.0.0:1238 -tt mtcp
+ehco -l 0.0.0.0:1238 -lt mtcp -r 0.0.0.0:5201
+```
+
+### 性能基准测试结果
+
+测试结果如下表所示，展示了在不同转发模式下，通过 TCP 和 UDP 协议的性能表现。
+
+| 类型 | 原始 (raw)     | 直接转发 (relay raw) | ws 隧道 (relay ws) | wss 隧道 (relay wss) | mwss 隧道 (relay mwss) | mtcp 隧道 (relay mtcp) |
+| ---- | -------------- | -------------------- | ------------------ | -------------------- | ---------------------- | ---------------------- |
+| TCP  | 123 Gbits/sec  | 55 Gbits/sec         | 41 Gbits/sec       | 10 Gbits/sec         | 5.78 Gbits/sec         | 22.2 Gbits/sec         |
+| UDP  | 14.5 Gbits/sec | 3.3 Gbits/sec        | 直接转发           | 直接转发             | 直接转发               | 直接转发               |
+
+### 分析
+
+从测试结果可以看出，直接转发的性能最高，而通过隧道转发（特别是通过加密的 wss 和 mwss 隧道）时，性能有所下降。这是因为隧道转发涉及到额外的加密解密过程和封包解包操作，这些都会增加 CPU 负载和延迟，从而影响传输速率。
+
+特别是，mwss 隧道在减少延迟方面有所优化，但其传输速率相比 wss 隧道有明显下降。这种权衡是设计上的选择，取决于用户对速度和延迟的不同需求。
+
+这些测试结果为 ehco 用户提供了在不同场景下选择合适转发模式的参考依据。
