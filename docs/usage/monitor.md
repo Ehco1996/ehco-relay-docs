@@ -39,11 +39,11 @@ scrape_configs:
 
 -   **延迟监控**: 类似于 Smoking Ping 的延迟监控，帮助您追踪和分析网络延迟。
 
-![延迟监控](/assets/monitor/ping.png)
+![延迟监控](../assets/monitor/ping.png)
 
 -   **流量监控**: 实时查看通过 ehco 转发的流量。
 
-![流量监控](/assets/monitor/traffic.png)
+![流量监控](../assets/monitor/traffic.png)
 
 ---
 

@@ -12,7 +12,7 @@ ehco 能够作为代理集的前置代理，自动合并具有相同前缀的代
 
 要添加节点并配置 Proxy Provider，您需要在添加节点的配置末尾指定 Proxy Provider 的名称和 URL。
 
-![添加代理集](/assets/node/add-proxy-provider.png)
+![添加代理集](../assets/node/add-proxy-provider.png)
 
 配置参数说明：
 
@@ -38,7 +38,7 @@ proxies:
 
 在 Ehco 的 Web 页面上，您可以查看到重写后的代理集信息。一个代理集会被重写成两个新的代理集：一个保留原代理集的名称，另一个则是原名称加上 `-lb` 后缀。
 
-![代理集重写](/assets/node/proxy-provider.png)
+![代理集重写](../assets/node/proxy-provider.png)
 
 ### name
 
@@ -94,4 +94,4 @@ proxy-providers:
 
 如果您配置了[监控功能](../usage/monitor.md)，可以在监控页面查看到代理集的使用情况。
 
-![代理流量监控](/assets/node/proxy-traffic.png)
+![代理流量监控](../assets/node/proxy-traffic.png)
