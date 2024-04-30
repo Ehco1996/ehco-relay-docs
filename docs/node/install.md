@@ -16,12 +16,18 @@ title: 部署节点
 
 ### 安装或升级 ehco
 
-> **API 对接地址** 需要先在 [Ehco-Relay](https://ehco-relay.cc) 上配置好您的节点，然后在节点管理页面复制 。具体请参考 [配置页面](manage.md)。
-
 要安装或升级到最新版本的 ehco，请运行以下命令：
 
 ```bash
 bash <(curl -fsSL https://get.ehco-relay.cc) -i --config <API 对接地址>
+```
+
+> **API 对接地址** 需要先在 [Ehco-Relay](https://ehco-relay.cc) 上配置好您的节点，然后在节点管理页面复制 。具体请参考 [配置页面](manage.md)。
+
+**注意：** `--config <API 对接地址>` 参数是必须的，并且需要包含在引号中，一个例子如下：
+
+```bash
+bash <(curl -fsSL https://get.ehco-relay.cc) -i --config "https://ehco-relay.cc/api/v1/config/1/"
 ```
 
 ### 移除 ehco
