@@ -14,7 +14,23 @@ title: 部署节点
 
 为了简化在 Linux 上的部署过程，我们提供了一个 bash 脚本。这个脚本能够自动下载 ehco 的最新版本，并为其配置 systemd 服务，以便您可以轻松管理 ehco 服务。
 
-### 安装或升级 ehco
+脚本支持如下功能
+
+```bash
+bash <(curl -fsSL https://get.ehco-relay.cc) -h
+
+Usage: get-ehco.sh [options]
+
+Options:
+  -h, --help          Show this help message and exit.
+  -v, --version       Specify the version to install.
+  -i, --install       Install the Ehco.
+  -c, --config        Specify the configuration file path or api endpoint.
+  -r, --remove        Remove the Ehco.
+  -u, --check-update  Check And Update if an update is available.
+```
+
+### 安装 ehco
 
 要安装或升级到最新版本的 ehco，请运行以下命令：
 
@@ -28,6 +44,14 @@ bash <(curl -fsSL https://get.ehco-relay.cc) -i --config <API 对接地址>
 
 ```bash
 bash <(curl -fsSL https://get.ehco-relay.cc) -i --config "https://ehco-relay.cc/api/v1/config/1/"
+```
+
+## 更新 ehco
+
+要检查并更新到最新版本的 ehco，请运行以下命令：
+
+```bash
+bash <(curl -fsSL https://get.ehco-relay.cc) -u
 ```
 
 ### 移除 ehco
