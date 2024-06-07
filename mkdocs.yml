@@ -44,23 +44,18 @@ extra_css:
 
 nav:
   - 首页: index.md
-  - 入门介绍: intro.md
-  - 文档:
+  - 流量转发是什么？: intro.md
+  - 使用文档:
       - 转发规则:
           - 直接转发: rule/direct.md
           - 隧道转发: rule/tunnel.md
-      - 添加节点:
-          - 配置: node/manage.md
-          - 部署: node/install.md
-          - 配置项说明: node/config.md
+      - 节点托管:
+          - 1. 配置: node/manage.md
+          - 2. 部署: node/install.md
       - 使用场景:
           - 流量转发: usage/relay.md
           - 内网穿透: usage/intranet.md
-          - 重写代理集: usage/proxy-provider.md
           - 性能监控: usage/monitor.md
-          - Xray: usage/xray.md
-      - 性能: benchmark.md
-      - FAQ: faq.md
-
+  - FAQ: faq.md
   - 中转服务: https://ehco-relay.cc
   - 内核源码: https://github.com/Ehco1996/ehco
