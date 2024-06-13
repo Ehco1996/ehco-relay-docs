@@ -82,7 +82,7 @@ sudo ./get-ehco.sh --remove
 
 ## Docker 镜像
 
-您也可以通过 Docker 来部署 ehco，Docker Hub 上的镜像地址为：<https://hub.docker.com/ehco1996/ehco> 。
+您也可以通过 Docker 来部署 ehco，Docker Hub 上的镜像地址为：<https://hub.docker.com/r/ehco1996/ehco> 。
 
 ### Docker Compose 示例
 
