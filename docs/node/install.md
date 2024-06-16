@@ -46,7 +46,7 @@ bash <(curl -fsSL https://get.ehco-relay.cc) -i --config <API 对接地址>
 bash <(curl -fsSL https://get.ehco-relay.cc) -i --config "https://ehco-relay.cc/api/v1/config/1/"
 ```
 
-## 更新 ehco
+### 更新 ehco
 
 要检查并更新到最新版本的 ehco，请运行以下命令：
 
