@@ -80,7 +80,37 @@ sudo ./get-ehco.sh -i --config "API 对接地址"
 sudo ./get-ehco.sh --remove
 ```
 
-## Docker 镜像
+### 查看日志
+
+```bash
+journalctl -u ehco -f
+```
+
+## 从源码构建
+
+如果您想从源码构建 ehco，可以按照以下步骤操作：
+
+```bash
+git clone git@github.com:Ehco1996/ehco.git
+
+cd ehco
+
+make build
+
+cp dist/ehco /usr/local/bin
+
+ehco -h
+```
+
+ehco 内置了 install 命令，方便快速安装 systemd 服务。
+
+```bash
+ehco install
+
+# 会以系统默认编辑器弹出对应的配置文件并安装到 `/etc/systemd/system/ehco.service`
+```
+
+## 通过 docker 部署
 
 您也可以通过 Docker 来部署 ehco，Docker Hub 上的镜像地址为：<https://hub.docker.com/r/ehco1996/ehco> 。
 
