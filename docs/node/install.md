@@ -25,9 +25,10 @@ Options:
   -h, --help          Show this help message and exit.
   -v, --version       Specify the version to install.
   -i, --install       Install the Ehco.
-  -c, --config        Specify the configuration file path or api endpoint.
+  -c, --config         Specify the configuration file path or api endpoint.
   -r, --remove        Remove the Ehco.
   -u, --check-update  Check And Update if an update is available.
+  --cf-proxy          Use cloudflare proxy to download/update ehco bin
 ```
 
 ### 安装 ehco
